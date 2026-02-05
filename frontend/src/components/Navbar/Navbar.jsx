@@ -7,19 +7,42 @@ import { StoreContext } from '../../context/StoreContext'
 const Navbar = ({setShowLogin}) => {
 
     const [menu,setMenu] = useState("home");
+    const [searchActive, setSearchActive] = useState(false);
+    const [isLoggingOut, setIsLoggingOut] = useState(false);
 
-    const {getTotalCartAmount,token,setToken} = useContext(StoreContext)
+    const {getTotalCartAmount,token,setToken,food_list,searchQuery,setSearchQuery} = useContext(StoreContext)
 
     const navigate = useNavigate();
 
     const logout = () => {
-        localStorage.removeItem("token");
-        setToken("");
-        navigate("/")
+        setIsLoggingOut(true);
+        setTimeout(() => {
+            localStorage.removeItem("token");
+            setToken("");
+            setIsLoggingOut(false);
+            navigate("/");
+        }, 800);
+    }
+
+    const handleSearch = (e) => {
+        const query = e.target.value;
+        setSearchQuery(query);
+    }
+
+    const handleSearchIcon = () => {
+        setSearchActive(!searchActive);
     }
 
   return (
     <div className='navbar'>
+        {isLoggingOut && (
+            <div className='logout-overlay'>
+                <div className='logout-modal'>
+                    <div className='logout-spinner'></div>
+                    <p>Logging out...</p>
+                </div>
+            </div>
+        )}
         <Link to='/'><img src={assets.logo} alt="" className="logo" /></Link>
         <ul className="navbar-menu">
             <Link to='/' onClick={()=>setMenu("home")} className={menu==="home"?"active":""}>Home</Link>
@@ -28,7 +51,23 @@ const Navbar = ({setShowLogin}) => {
             <a href='#footer' onClick={()=>setMenu("contact-us")} className={menu==="contact-us"?"active":""}>Contact Us</a>
         </ul>
         <div className='navbar-right'>
-            <img src={assets.search_icon} alt="" />
+            <div className={`search-container ${searchActive ? 'active' : ''}`}>
+                <input 
+                    type='text' 
+                    className='search-input'
+                    placeholder='Search foods...'
+                    value={searchQuery}
+                    onChange={handleSearch}
+                    onFocus={() => setSearchActive(true)}
+                    onBlur={() => setTimeout(() => setSearchActive(false), 200)}
+                />
+                <img 
+                    src={assets.search_icon} 
+                    alt="search" 
+                    className="search-icon-btn"
+                    onClick={handleSearchIcon}
+                />
+            </div>
             <div className="navbar-search-icon">
                 <Link to='/cart'><img src={assets.basket_icon} alt="" /></Link>
                 <div className={getTotalCartAmount()===0?"":"dot"}></div>
@@ -37,7 +76,7 @@ const Navbar = ({setShowLogin}) => {
             :<div className='navbar-profile'>
                 <img src={assets.profile_icon} alt="" />
                 <ul className='nav-profile-dropdown'>
-                    <li><img src={assets.bag_icon} alt="" /><p>Orders</p></li>
+                    <li onClick={()=>navigate('/myorders')}><img src={assets.bag_icon} alt="" /><p>Orders</p></li>
                     <hr />
                     <li onClick={logout}><img src={assets.logout_icon} alt="" /><p>Logout</p></li>
                 </ul>
