@@ -1,5 +1,5 @@
 import axios from "axios";
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState, useMemo } from "react";
 
 export const StoreContext = createContext(null)
 
@@ -11,6 +11,14 @@ const StoreContextProvider = (props) => {
     const [token,setToken] = useState("");
     const [food_list,setFoodList] = useState([])
     const [searchQuery, setSearchQuery] = useState("");
+
+    const foodMap = useMemo(() => {
+        const map = {};
+        food_list.forEach(item => {
+            map[item._id] = item;
+        });
+        return map;
+    }, [food_list]);
 
     const addTocart = async (itemId) => {
         setCartItems((prev) => {
@@ -37,15 +45,17 @@ const StoreContextProvider = (props) => {
         }
     }
 
-    const getTotalCartAmount = () =>{
+    const getTotalCartAmount = () => {
         let totalAmount = 0;
-        for(const item in cartItems)
-        {
-            if (cartItems[item]>0) {
-                let itemInfo = food_list.find((product)=>product._id===item);
-            totalAmount += itemInfo.price*cartItems[item];
+        for(const item in cartItems) {
+            if (cartItems[item] > 0) {
+                const itemInfo = foodMap[item]; // Use map for O(1) lookup
+                if (itemInfo) { // ✅ Check if item exists
+                    totalAmount += itemInfo.price * cartItems[item];
+                } else {
+                    console.warn(`Item ${item} not found in food list`);
+                }
             }
-            
         }
         return totalAmount;
     }
@@ -87,7 +97,8 @@ const StoreContextProvider = (props) => {
         token,
         setToken,
         searchQuery,
-        setSearchQuery
+        setSearchQuery,
+        foodMap
     }
 
     return(

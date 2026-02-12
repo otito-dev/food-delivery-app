@@ -24,6 +24,11 @@ const Navbar = ({setShowLogin}) => {
         }, 800);
     }
 
+    const handleHomeClick = () => {
+        setMenu("home");
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
     const handleSearch = (e) => {
         const query = e.target.value;
         setSearchQuery(query);
@@ -43,9 +48,9 @@ const Navbar = ({setShowLogin}) => {
                 </div>
             </div>
         )}
-        <Link to='/'><img src={assets.logo} alt="" className="logo" /></Link>
+        <Link to='/' onClick={handleHomeClick}><img src={assets.logo} alt="" className="logo" /></Link>
         <ul className="navbar-menu">
-            <Link to='/' onClick={()=>setMenu("home")} className={menu==="home"?"active":""}>Home</Link>
+            <Link to='/' onClick={handleHomeClick} className={menu==="home"?"active":""}>Home</Link>
             <a href='#explore-menu' onClick={()=>setMenu("menu")} className={menu==="menu"?"active":""}>Menu</a>
             <a href='#app-download' onClick={()=>setMenu("mobile-app")} className={menu==="mobile-app"?"active":""}>Mobile-App</a>
             <a href='#footer' onClick={()=>setMenu("contact-us")} className={menu==="contact-us"?"active":""}>Contact Us</a>
