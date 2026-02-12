@@ -54,10 +54,15 @@
     font-weight: 500;
 }
 
+.list-actions {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
 .list-table-format .cursor{
     cursor: pointer;
     color: white;
-    background: linear-gradient(135deg, #ff6b6b, #f59e0b);
     padding: 8px 12px;
     width: auto;
     border-radius: 6px;
@@ -65,9 +70,23 @@
     transition: all 0.3s ease;
     text-align: center;
     font-size: 14px;
+    margin: 0;
 }
 
-.list-table-format .cursor:hover {
+.list-table-format .edit-btn {
+    background: linear-gradient(135deg, #4CAF50, #45a049);
+}
+
+.list-table-format .edit-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 16px rgba(76, 175, 80, 0.3);
+}
+
+.list-table-format .delete-btn {
+    background: linear-gradient(135deg, #ff6b6b, #f59e0b);
+}
+
+.list-table-format .delete-btn:hover {
     transform: scale(1.1);
     box-shadow: 0 4px 16px rgba(0,0,0,0.12);
 }
@@ -93,5 +112,208 @@
     }
     .list-table-format.title{
         display: none;
+    }
+}
+
+/* Edit Modal Styles */
+.edit-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(3px);
+    animation: fadeIn 0.3s ease;
+}
+
+.edit-modal-content {
+    background: white;
+    border-radius: 12px;
+    padding: 30px;
+    max-width: 600px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: slideInUp 0.3s ease;
+}
+
+.edit-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 15px;
+}
+
+.edit-modal-header h2 {
+    margin: 0;
+    font-size: 24px;
+    color: #2c3e50;
+    font-weight: 700;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 28px;
+    cursor: pointer;
+    color: #7f8c8d;
+    transition: all 0.3s ease;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.close-btn:hover {
+    color: #ff6b6b;
+    transform: scale(1.2);
+}
+
+.edit-modal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.edit-form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.edit-form-group label {
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.edit-form-group input,
+.edit-form-group textarea,
+.edit-form-group select {
+    padding: 12px 14px;
+    border: 2px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 14px;
+    font-family: inherit;
+    transition: all 0.3s ease;
+    color: #2c3e50;
+}
+
+.edit-form-group input:focus,
+.edit-form-group textarea:focus,
+.edit-form-group select:focus {
+    outline: none;
+    border-color: #ff6b6b;
+    box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.1);
+}
+
+.edit-form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.edit-form-group small {
+    font-size: 12px;
+    color: #7f8c8d;
+    margin-top: 4px;
+}
+
+.edit-form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.edit-modal-buttons {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid #e0e0e0;
+}
+
+.cancel-btn,
+.save-btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 14px;
+}
+
+.cancel-btn {
+    background: #e0e0e0;
+    color: #2c3e50;
+}
+
+.cancel-btn:hover {
+    background: #d0d0d0;
+}
+
+.save-btn {
+    background: linear-gradient(135deg, #4CAF50, #45a049);
+    color: white;
+}
+
+.save-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(76, 175, 80, 0.3);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 600px) {
+    .edit-modal-content {
+        padding: 20px;
+        width: 95%;
+    }
+
+    .edit-modal-header h2 {
+        font-size: 20px;
+    }
+
+    .edit-form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .edit-modal-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .cancel-btn,
+    .save-btn {
+        width: 100%;
     }
 }

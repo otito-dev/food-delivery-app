@@ -1,0 +1,155 @@
+.coming-soon-popup {
+    position: fixed;
+    z-index: 100;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: grid;
+    top: 0;
+    left: 0;
+    backdrop-filter: blur(3px);
+    animation: fadeIn 0.3s ease;
+}
+
+.coming-soon-popup-container {
+    place-self: center;
+    width: max(24vw, 360px);
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 40px 36px;
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: slideInUp 0.4s ease;
+    text-align: center;
+}
+
+.coming-soon-popup-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.coming-soon-popup-title h2 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 700;
+    color: #ff6b6b;
+}
+
+.coming-soon-popup-title img {
+    width: 18px;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: all 0.3s ease;
+}
+
+.coming-soon-popup-title img:hover {
+    opacity: 1;
+    transform: scale(1.2);
+}
+
+.coming-soon-popup-content {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.coming-soon-emoji {
+    font-size: 48px;
+    animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.coming-soon-text {
+    margin: 0;
+    font-size: 16px;
+    color: #2c3e50;
+    font-weight: 600;
+    line-height: 1.5;
+}
+
+.platform-name {
+    color: #ff6b6b;
+    font-weight: 700;
+}
+
+.coming-soon-subtitle {
+    margin: 0;
+    font-size: 14px;
+    color: #7f8c8d;
+    line-height: 1.4;
+}
+
+.coming-soon-button {
+    border: none;
+    padding: 14px 28px;
+    border-radius: 10px;
+    color: white;
+    background: linear-gradient(135deg, #ff6b6b, #f59e0b);
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    margin-top: 10px;
+}
+
+.coming-soon-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.coming-soon-button:active {
+    transform: translateY(0);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 750px) {
+    .coming-soon-popup-container {
+        width: 90vw;
+        padding: 30px 24px;
+    }
+
+    .coming-soon-emoji {
+        font-size: 40px;
+    }
+
+    .coming-soon-text {
+        font-size: 15px;
+    }
+
+    .coming-soon-subtitle {
+        font-size: 13px;
+    }
+}
