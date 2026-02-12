@@ -1,56 +1,120 @@
 .expolore-menu{
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 24px;
+    animation: slideInUp 0.6s ease;
+    margin: 60px auto;
+    padding: 0 150px;
 }
+
 .expolore-menu h1{
-    color: #262626;
-    font-weight: 500;
+    color: #2c3e50;
+    font-weight: 700;
+    font-size: 32px;
+    margin: 0;
+    text-align: center;
 }
+
 .explore-menu-text{
-    max-width: 60%;
-    color: #808080;
+    max-width: 70%;
+    color: #7f8c8d;
+    font-size: 16px;
+    line-height: 1.6;
+    text-align: center;
+    margin: 20px auto;
 }
+
 .explore-menu-list{
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
-    gap: 30px;
+    gap: 50px;
     text-align: center;
-    margin: 20px 0px;
-    overflow-x: scroll;
+    margin: 20px 0;
+    overflow-x: auto;
+    padding-bottom: 10px;
 }
+
 .explore-menu-list::-webkit-scrollbar{
-    display: none;
+    height: 6px;
 }
+
+.explore-menu-list::-webkit-scrollbar-track {
+    background: #f8f9fa;
+    border-radius: 10px;
+}
+
+.explore-menu-list::-webkit-scrollbar-thumb {
+    background: #ff6b6b;
+    border-radius: 10px;
+}
+
 .explore-menu-list-item img{
     width: 7.5vw;
-    min-width: 80px;
+    min-width: 85px;
+    max-width: 105px;
+    height: 7.5vw;
+    min-height: 95px;
+    max-height: 115px;
     cursor: pointer;
     border-radius: 50%;
-    transition: 0.2s;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    object-fit: cover;
+    border: 3px solid transparent;
 }
+
+.explore-menu-list-item:hover img{
+    transform: scale(1.1);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
 .explore-menu-list-item p{
-    margin-top: 10px;
-    color: #747474;
-    font-size: max(1.4vw, 16px);
+    margin-top: 12px;
+    color: #7f8c8d;
+    font-size: max(1.2vw, 15px);
     cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
 }
+
+.explore-menu-list-item:hover p {
+    color: #ff6b6b;
+    font-weight: 600;
+}
+
 .expolore-menu hr{
-    margin: 10px 0px;
+    margin: 20px 0;
     height: 2px;
-    background-color: #e2e2e2;
+    background: linear-gradient(90deg, transparent, #e0e0e0, transparent);
     border: none;
 }
+
 .explore-menu-list-item .active{
-    border: 4px solid tomato;
+    border: 4px solid #ff6b6b;
     padding: 2px;
+    box-shadow: 0 0 20px rgba(255, 107, 107, 0.4);
 }
 
 @media (max-width: 1050px) {
     .explore-menu-text{
         max-width: 100%;
-        font-size: 14px;
+        font-size: 15px;
     }
-   
+    
+    .expolore-menu h1 {
+        font-size: 28px;
+    }
+}
+
+@media (max-width: 750px) {
+    .explore-menu-list {
+        gap: 20px;
+    }
+    
+    .explore-menu-list-item img {
+        width: 60px;
+        height: 60px;
+        min-width: 60px;
+        min-height: 60px;
+    }
 }

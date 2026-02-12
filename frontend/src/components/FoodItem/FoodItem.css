@@ -1,65 +1,123 @@
 .food-item{
     width: 100%;
     margin: auto;
-    border-radius: 15px;
-    box-shadow: 0px 0px 10px #00000015;
-    transition: 0.3s;
-    animation: fadeIn 1.3s;
+    border-radius: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: fadeIn 0.6s ease;
+    background: white;
+    overflow: hidden;
 }
+
+.food-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+}
+
 .food-item-image{
     width: 100%;
-    border-radius: 15px 15px 0px 0px;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 16px 16px 0 0;
+    transition: transform 0.4s ease;
 }
+
+.food-item:hover .food-item-image {
+    transform: scale(1.08);
+}
+
 .food-item-info{
     padding: 20px;
 }
+
 .food-item-name-rating{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
 }
+
 .food-item-name-rating p{
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 600;
+    color: #2c3e50;
 }
+
 .food-item-name-rating img{
     width: 70px;
+    opacity: 0.9;
 }
+
 .food-item-desc{
-    color: #676767;
+    color: #7f8c8d;
     font-size: 13px;
+    line-height: 1.5;
+    margin-bottom: 12px;
 }
+
 .food-item-price{
-    color: tomato;
+    background: linear-gradient(135deg, #ff6b6b, #f59e0b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     font-size: 22px;
-    font-weight: 600;
-    margin: 10px 0px;
+    font-weight: 700;
+    margin: 0;
 }
+
 .food-item-img-container{
     position: relative;
+    overflow: hidden;
+    border-radius: 16px 16px 0 0;
 }
+
 .food-item-img-container .add{
     position: absolute;
     bottom: 15px;
     right: 15px;
-    width: 35px;
+    width: 44px;
+    height: 44px;
     cursor: pointer;
     border-radius: 50%;
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.1));
 }
+
+.food-item-img-container .add:hover {
+    transform: scale(1.15);
+}
+
 .food-item-counter{
     position: absolute;
     bottom: 15px;
     right: 15px;
-    background-color: white;
+    background: white;
     border-radius: 30px;
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding: 6px;
-    box-shadow: 0px 0px 10px #00000020;
+    gap: 12px;
+    padding: 6px 12px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+    animation: slideInUp 0.3s ease;
 }
+
 .food-item-counter img{
-    width: 30px;
+    width: 28px;
+    height: 28px;
     cursor: pointer;
+    transition: all 0.2s ease;
+    opacity: 0.8;
+}
+
+.food-item-counter img:hover {
+    transform: scale(1.2);
+    opacity: 1;
+}
+
+.food-item-counter p {
+    color: #2c3e50;
+    font-weight: 600;
+    min-width: 20px;
+    text-align: center;
+    margin: 0;
 }  

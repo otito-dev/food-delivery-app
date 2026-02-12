@@ -2,13 +2,39 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 8px 4%;
+    padding: 16px 4%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(135deg, white 0%, #f8f9fa 100%);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+    z-index: 1000;
+    border-bottom: 1px solid #e0e0e0;
 }
 
 .navbar .logo{
-    width: max(10%,80px);
+    width: max(10%, 90px);
+    transition: transform 0.3s ease;
+}
+
+.navbar .logo:hover{
+    transform: scale(1.05);
 }
 
 .navbar .profile{
-    width: 40px;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: #f8f9fa;
+    padding: 2px;
+    border: 2px solid transparent;
+}
+
+.navbar .profile:hover{
+    border-color: #ff6b6b;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+    transform: scale(1.08);
 }

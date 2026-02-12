@@ -18,17 +18,29 @@ a{
 }
 
 hr{
-    border: none;
-    height: 1px;
-    background-color: #a9a9a9;
+    display: none;
 }
 
 .app-content{
     display: flex;
+    margin-top: 70px;
+    min-height: calc(100vh - 70px);
+}
+
+.app-content > div:not(.sidebar){
+    margin-left: 18%;
+    flex: 1;
+    padding: 30px;
 }
 
 .flex-col{
     display: flex;
     flex-direction: column;
     gap: 10px;
+}
+
+@media (max-width: 900px){
+    .app-content > div:not(.sidebar){
+        margin-left: 70px;
+    }
 }
