@@ -34,7 +34,65 @@
 }
 
 .navbar .profile:hover{
-    border-color: #ff6b6b;
+    border-color: #667eea;
     box-shadow: 0 4px 16px rgba(0,0,0,0.12);
     transform: scale(1.08);
+}
+
+/* Admin logout dropdown */
+.navbar > div {
+    position: relative;
+}
+
+.admin-profile-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 10px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    z-index: 1000;
+    min-width: 150px;
+    border: 1px solid #e0e0e0;
+}
+
+.navbar > div:hover .admin-profile-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.logout-option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 18px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #2c3e50;
+    font-weight: 600;
+    border-radius: 12px;
+}
+
+.logout-option:hover {
+    background: linear-gradient(135deg, rgba(255, 107, 107, 0.1), rgba(245, 158, 11, 0.1));
+    color: #ff6b6b;
+}
+
+.logout-option span:first-child {
+    font-size: 18px;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }

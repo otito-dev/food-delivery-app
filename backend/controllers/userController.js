@@ -3,8 +3,7 @@ import jwt from 'jsonwebtoken'
 import bcrypt from 'bcrypt'
 import validator from 'validator'
 
-
-// login user
+// Login user
 const loginUser = async (req,res) => {
     const {email,password} = req.body;
     try {
@@ -20,6 +19,11 @@ const loginUser = async (req,res) => {
         }
 
         const token = createToken(user._id)
+        
+        // ✅ Update last login
+        user.lastLogin = new Date();
+        await user.save();
+        
         res.json({success:true,token});
 
     } catch (error){
@@ -32,7 +36,7 @@ const createToken = (id) => {
     return jwt.sign({id},process.env.JWT_SECRET)
 }
 
-// register user
+// Register user
 const registerUser = async (req,res) => {
     const {name,password,email} = req.body;
     try {
@@ -42,13 +46,26 @@ const registerUser = async (req,res) => {
             return res.json({success:false,message:"User already exists"})  
         }
 
-        // validating email format & strong passwaord
+        // validating email format & strong password
         if(!validator.isEmail(email)){
             return res.json({success:false,message:"Invalid Email"})
         }
 
-        if (password.length<8) {
-            return res.json({success:false,message:"Please enter a stronge password"})
+        // ✅ IMPROVED: Better password validation
+        if (password.length < 8) {
+            return res.json({success:false,message:"Password must be at least 8 characters long"})
+        }
+
+        // Optional: Add stronger password requirements
+        const hasUpperCase = /[A-Z]/.test(password);
+        const hasLowerCase = /[a-z]/.test(password);
+        const hasNumber = /\d/.test(password);
+        
+        if (!hasUpperCase || !hasLowerCase || !hasNumber) {
+            return res.json({
+                success:false,
+                message:"Password must contain uppercase, lowercase, and number"
+            })
         }
 
         // hashing user password
@@ -71,4 +88,40 @@ const registerUser = async (req,res) => {
     }
 }
 
-export {loginUser,registerUser}
+// ✅ NEW: Verify if user is admin
+const verifyAdmin = async (req, res) => {
+    try {
+        const {token} = req.headers;
+        
+        if (!token) {
+            return res.json({success: false, message: "No token provided"})
+        }
+
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        const user = await userModels.findById(decoded.id);
+
+        if (!user) {
+            return res.json({success: false, message: "User not found"})
+        }
+
+        if (!user.isAdmin) {
+            return res.json({success: false, message: "Not an admin", isAdmin: false})
+        }
+
+        res.json({
+            success: true, 
+            isAdmin: true,
+            user: {
+                id: user._id,
+                name: user.name,
+                email: user.email
+            }
+        })
+
+    } catch (error) {
+        console.error("Verify admin error:", error);
+        res.json({success: false, message: "Invalid or expired token"})
+    }
+}
+
+export {loginUser, registerUser, verifyAdmin}

@@ -38,6 +38,14 @@ const Navbar = ({setShowLogin}) => {
         setSearchActive(!searchActive);
     }
 
+    const handleCartClick = () => {
+        if (!token) {
+            setShowLogin(true);
+        } else {
+            navigate('/cart');
+        }
+    }
+
   return (
     <div className='navbar'>
         {isLoggingOut && (
@@ -73,8 +81,8 @@ const Navbar = ({setShowLogin}) => {
                     onClick={handleSearchIcon}
                 />
             </div>
-            <div className="navbar-search-icon">
-                <Link to='/cart'><img src={assets.basket_icon} alt="" /></Link>
+            <div className="navbar-search-icon" onClick={handleCartClick} style={{cursor: 'pointer'}}>
+                <img src={assets.basket_icon} alt="" />
                 <div className={getTotalCartAmount()===0?"":"dot"}></div>
             </div>
             {!token?<button onClick={()=>setShowLogin(true)}>Sign In</button>

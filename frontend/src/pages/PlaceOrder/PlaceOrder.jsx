@@ -8,6 +8,11 @@ const PlaceOrder = () => {
   const navigate = useNavigate()
   const {getTotalCartAmount, deliveryFee, token, food_list, cartItems, url, setCartItems} = useContext(StoreContext)
 
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [])
+
   const [data, setData] = useState({
     firstName: "",
     lastName: "",

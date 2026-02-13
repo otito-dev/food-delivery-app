@@ -20,6 +20,10 @@ const MyOrders = () => {
         setLoading(false);
     }
 
+    useEffect(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, [])
+
     useEffect(()=>{
         if (token) {
             fetchOrders();
