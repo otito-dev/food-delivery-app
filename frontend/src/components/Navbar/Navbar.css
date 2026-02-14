@@ -316,6 +316,7 @@
   align-items: center;
   gap: 24px;
   animation: slideInUp 0.4s ease;
+}
 .logout-spinner {
   width: 56px;
   height: 56px;
@@ -324,6 +325,8 @@
   border-radius: 50%;
   animation: spin 1.2s linear infinite;
 }
+
+@keyframes spin {
   from {
     transform: rotate(0deg);
   }
@@ -338,6 +341,3 @@
   font-weight: 500;
   margin: 0;
 }
-
-
-
