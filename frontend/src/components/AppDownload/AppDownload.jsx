@@ -16,7 +16,7 @@ const AppDownload = () => {
     <>
       {showComingSoon && <ComingSoonPopup setShowComingSoon={setShowComingSoon} platform={selectedPlatform} />}
       <div className='app-download' id='app-download'>
-          <p>For Better Experience Download <br />Tomato App</p>
+          <p>For Better Experience Download <br />QuickBite App</p>
           <div className="app-download-platforms">
               <img src={assets.play_store} alt="Google Play Store" onClick={() => handlePlatformClick('Google Play Store')} />
               <img src={assets.app_store} alt="Apple App Store" onClick={() => handlePlatformClick('Apple App Store')} />

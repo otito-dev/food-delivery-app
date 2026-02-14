@@ -7,7 +7,7 @@
     top: 0;
     left: 0;
     right: 0;
-    background: linear-gradient(135deg, white 0%, #f8f9fa 100%);
+    background: linear-gradient(135deg, white 0%, #f8f1e5 100%);
     box-shadow: 0 4px 16px rgba(0,0,0,0.12);
     z-index: 1000;
     border-bottom: 1px solid #e0e0e0;
@@ -28,13 +28,13 @@
     border-radius: 50%;
     cursor: pointer;
     transition: all 0.3s ease;
-    background: #f8f9fa;
+    background: #f8f1e5;
     padding: 2px;
     border: 2px solid transparent;
 }
 
 .navbar .profile:hover{
-    border-color: #667eea;
+    border-color: #1f3d2b;
     box-shadow: 0 4px 16px rgba(0,0,0,0.12);
     transform: scale(1.08);
 }
@@ -80,8 +80,8 @@
 }
 
 .logout-option:hover {
-    background: linear-gradient(135deg, rgba(255, 107, 107, 0.1), rgba(245, 158, 11, 0.1));
-    color: #ff6b6b;
+    background: linear-gradient(135deg, rgba(31, 61, 43, 0.1), rgba(198, 167, 94, 0.1));
+    color: #1f3d2b;
 }
 
 .logout-option span:first-child {

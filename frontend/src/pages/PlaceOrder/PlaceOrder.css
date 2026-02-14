@@ -39,8 +39,8 @@
 }
 
 .place-order-left input:focus{
-    border-color: #ff6b6b;
-    box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.1);
+    border-color: #1f3d2b;
+    box-shadow: 0 0 0 3px rgba(31, 61, 43, 0.1);
 }
 
 .place-order-left .mutlti-fields{

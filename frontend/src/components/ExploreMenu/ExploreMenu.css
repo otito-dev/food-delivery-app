@@ -40,12 +40,12 @@
 }
 
 .explore-menu-list::-webkit-scrollbar-track {
-    background: #f8f9fa;
+    background: #f8f1e5;
     border-radius: 10px;
 }
 
 .explore-menu-list::-webkit-scrollbar-thumb {
-    background: #ff6b6b;
+    background: #1f3d2b;
     border-radius: 10px;
 }
 
@@ -78,7 +78,7 @@
 }
 
 .explore-menu-list-item:hover p {
-    color: #ff6b6b;
+    color: #1f3d2b;
     font-weight: 600;
 }
 
@@ -90,9 +90,9 @@
 }
 
 .explore-menu-list-item .active{
-    border: 4px solid #ff6b6b;
+    border: 4px solid #1f3d2b;
     padding: 2px;
-    box-shadow: 0 0 20px rgba(255, 107, 107, 0.4);
+    box-shadow: 0 0 20px rgba(31, 61, 43, 0.4);
 }
 
 @media (max-width: 1050px) {

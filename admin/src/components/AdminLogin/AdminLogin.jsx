@@ -53,8 +53,8 @@ const AdminLogin = ({ setToken }) => {
       <ToastContainer />
       <div className='admin-login-container'>
         <div className='admin-login-header'>
-          <div className='admin-logo'>🍅</div>
-          <h1>Tomato Admin</h1>
+          <div className='admin-logo'>🍽️</div>
+          <h1>QuickBite Admin</h1>
           <p>Please sign in to continue</p>
         </div>
 
@@ -65,7 +65,7 @@ const AdminLogin = ({ setToken }) => {
               type='email'
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder='admin@tomato.com'
+              placeholder='admin@QuickBite.com'
               required
               disabled={loading}
             />

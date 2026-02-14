@@ -29,14 +29,14 @@
 }
 
 .list-table-format.title{
-    background: linear-gradient(135deg, #f8f9fa 0%, #f0f2f5 100%);
+    background: linear-gradient(135deg, #f8f1e5 0%, #f5ead7 100%);
     font-weight: 600;
     color: #2c3e50;
     border-bottom: 2px solid #e0e0e0;
 }
 
 .list-table-format:not(.title):hover {
-    background-color: #f8f9fa;
+    background-color: #f8f1e5;
     padding-left: 24px;
 }
 
@@ -83,12 +83,12 @@
 }
 
 .list-table-format .delete-btn {
-    background: linear-gradient(135deg, #ff6b6b, #f59e0b);
+    background: linear-gradient(135deg, #1f3d2b, #2d5c42);
 }
 
 .list-table-format .delete-btn:hover {
     transform: scale(1.1);
-    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+    box-shadow: 0 4px 16px rgba(31, 61, 43, 0.3);
 }
 
 @media (max-width: 900px) {
@@ -175,7 +175,7 @@
 }
 
 .close-btn:hover {
-    color: #ff6b6b;
+    color: #1f3d2b;
     transform: scale(1.2);
 }
 
@@ -213,8 +213,8 @@
 .edit-form-group textarea:focus,
 .edit-form-group select:focus {
     outline: none;
-    border-color: #ff6b6b;
-    box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.1);
+    border-color: #1f3d2b;
+    box-shadow: 0 0 0 3px rgba(31, 61, 43, 0.1);
 }
 
 .edit-form-group textarea {

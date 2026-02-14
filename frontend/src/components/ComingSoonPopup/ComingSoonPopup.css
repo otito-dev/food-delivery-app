@@ -37,7 +37,7 @@
     margin: 0;
     font-size: 24px;
     font-weight: 700;
-    color: #ff6b6b;
+    color: #1f3d2b;
 }
 
 .coming-soon-popup-title img {
@@ -81,7 +81,7 @@
 }
 
 .platform-name {
-    color: #ff6b6b;
+    color: #1f3d2b;
     font-weight: 700;
 }
 
@@ -97,7 +97,7 @@
     padding: 14px 28px;
     border-radius: 10px;
     color: white;
-    background: linear-gradient(135deg, #ff6b6b, #f59e0b);
+    background: linear-gradient(135deg, #1f3d2b, #2d5c42);
     font-size: 15px;
     font-weight: 600;
     cursor: pointer;

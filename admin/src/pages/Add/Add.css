@@ -34,7 +34,7 @@
 }
 
 .add-image-upload:hover img {
-    border-color: #ff6b6b;
+    border-color: #1f3d2b;
     box-shadow: 0 4px 16px rgba(0,0,0,0.12);
     transform: scale(1.05);
 }
@@ -76,8 +76,8 @@
 
 .add-product-name input:focus, 
 .add-product-description textarea:focus{
-    border-color: #ff6b6b;
-    box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.1);
+    border-color: #1f3d2b;
+    box-shadow: 0 0 0 3px rgba(31, 61, 43, 0.1);
     outline: none;
 }
 
@@ -115,13 +115,13 @@
 
 .add-category select:hover,
 .add-price input:hover {
-    border-color: #ff6b6b;
+    border-color: #1f3d2b;
 }
 
 .add-category select:focus, 
 .add-price input:focus{
-    border-color: #ff6b6b;
-    box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.1);
+    border-color: #1f3d2b;
+    box-shadow: 0 0 0 3px rgba(31, 61, 43, 0.1);
     outline: none;
 }
 
@@ -130,7 +130,7 @@
     max-width: 180px;
     border: none;
     padding: 14px 28px;
-    background: linear-gradient(135deg, #ff6b6b, #f59e0b);
+    background: linear-gradient(135deg, #1f3d2b, #2d5c42);
     color: white;
     cursor: pointer;
     border-radius: 10px;

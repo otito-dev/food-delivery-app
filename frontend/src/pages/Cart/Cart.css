@@ -21,7 +21,7 @@
 }
 
 .cart-items-item:hover {
-    background-color: #f8f9fa;
+    background-color: #f8f1e5;
     padding: 10px 10px;
     border-radius: 8px;
 }
@@ -42,7 +42,7 @@
 .cart-items-item .cross{
     cursor: pointer;
     font-weight: 700;
-    color: #ff6b6b;
+    color: #1f3d2b;
     font-size: 18px;
 }
 
@@ -90,7 +90,7 @@
 .cart-total button{
     border: none;
     color: white;
-    background: linear-gradient(135deg, #ff6b6b, #f59e0b);
+    background: linear-gradient(135deg, #1f3d2b, #2d5c42);
     width: 100%;
     padding: 16px 0;
     border-radius: 12px;
@@ -129,14 +129,14 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #f8f9fa;
+    background-color: #f8f1e5;
     border-radius: 12px;
     border: 2px solid #e0e0e0;
     transition: all 0.3s ease;
 }
 
 .cart-pronmocode-input:focus-within {
-    border-color: #ff6b6b;
+    border-color: #1f3d2b;
     box-shadow: 0 4px 16px rgba(0,0,0,0.12);
 }
 
@@ -214,7 +214,7 @@
 }
 
 .continue-shopping-btn {
-    background: linear-gradient(135deg, #ff6b6b, #f59e0b);
+    background: linear-gradient(135deg, #1f3d2b, #2d5c42);
     color: white;
     border: none;
     padding: 14px 40px;

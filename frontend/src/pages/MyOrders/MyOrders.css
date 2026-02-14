@@ -21,7 +21,7 @@
 
 .track-order-btn {
   padding: 14px 32px;
-  background: linear-gradient(135deg, #ff6b6b, #f59e0b);
+  background: linear-gradient(135deg, #1f3d2b, #2d5c42);
   color: white;
   border: none;
   border-radius: 50px;
@@ -139,13 +139,13 @@
 }
 
 .order-items li {
-  background: #f8f9fa;
+  background: #f8f1e5;
   padding: 12px 14px;
   border-radius: 8px;
   color: #2c3e50;
   font-size: 14px;
   font-weight: 500;
-  border-left: 4px solid #ff6b6b;
+  border-left: 4px solid #1f3d2b;
 }
 
 .order-details {
@@ -179,14 +179,14 @@
 }
 
 .order-status {
-  background: linear-gradient(135deg, rgba(255, 193, 7, 0.1), rgba(255, 107, 107, 0.05));
+  background: linear-gradient(135deg, rgba(198, 167, 94, 0.1), rgba(31, 61, 43, 0.05));
   padding: 16px;
   border-radius: 10px;
-  border-left: 4px solid #f59e0b;
+  border-left: 4px solid #c6a75e;
 }
 
 .order-status p {
-  color: #f59e0b;
+  color: #c6a75e;
   font-size: 14px;
   margin: 0;
   font-weight: 600;

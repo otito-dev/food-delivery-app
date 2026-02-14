@@ -3,15 +3,6 @@ import bcrypt from 'bcrypt';
 import userModels from '../models/userModels.js';
 import 'dotenv/config';
 
-/**
- * Script to create an admin user
- * 
- * Usage:
- * 1. Save this file as backend/scripts/createAdmin.js
- * 2. Run: node scripts/createAdmin.js
- * 3. Use the displayed credentials to login to admin panel
- */
-
 const createAdmin = async () => {
     try {
         console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
@@ -19,20 +10,17 @@ const createAdmin = async () => {
         console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
         console.log("");
 
-        // Connect to database
         console.log("📡 Connecting to database...");
         await mongoose.connect(process.env.MONGODB_URI);
         console.log("✅ Connected successfully");
         console.log("");
 
-        // Admin credentials
         const adminData = {
             name: "Otito DEV Admin",
-            email: "otitomortalCR7@gmail.com",
-            password: "Otitoboss5$", // Users should change this!
+            email: "otito@gmail.com",
+            password: "Otitoboss",
         };
 
-        // Check if admin already exists
         console.log(`🔍 Checking if ${adminData.email} exists...`);
         const existingUser = await userModels.findOne({ email: adminData.email });
         
