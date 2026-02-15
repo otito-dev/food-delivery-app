@@ -1,151 +1,241 @@
-.add{
-    width: 100%;
+.add-redesign {
+    margin-left: 280px;
+    padding: 100px 40px 40px;
+    min-height: 100vh;
+    background: #f8f9fa;
+}
+
+.add-container {
+    max-width: 1000px;
+}
+
+.add-header {
+    margin-bottom: 40px;
+}
+
+.add-title {
+    font-size: 32px;
+    font-weight: 800;
     color: #2c3e50;
+    margin: 0 0 8px 0;
+}
+
+.add-subtitle {
     font-size: 15px;
-    animation: slideInUp 0.5s ease;
+    color: #7f8c8d;
+    margin: 0;
 }
 
-.add form{
-    gap: 25px;
+.add-form-redesign {
     background: white;
+    border-radius: 24px;
     padding: 40px;
-    border-radius: 16px;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
 }
 
-.add-image-upload {
-    cursor: pointer;
+.form-grid {
+    display: grid;
+    grid-template-columns: 400px 1fr;
+    gap: 40px;
 }
 
-.add-image-upload p {
-    font-weight: 600;
-    margin-bottom: 12px;
+.form-section {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.section-label {
+    font-size: 14px;
+    font-weight: 700;
     color: #2c3e50;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
-.add-image-upload img{
-    width: 140px;
-    height: 140px;
-    object-fit: cover;
-    border-radius: 12px;
+.image-upload-area {
+    flex: 1;
+}
+
+.image-upload-label {
+    display: block;
+    cursor: pointer;
+    height: 100%;
+    min-height: 400px;
+}
+
+.image-placeholder {
+    height: 100%;
     border: 3px dashed #e0e0e0;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
     transition: all 0.3s ease;
-    cursor: pointer;
 }
 
-.add-image-upload:hover img {
-    border-color: #1f3d2b;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
-    transform: scale(1.05);
+.image-placeholder:hover {
+    border-color: #ff6b6b;
+    background: rgba(255, 107, 107, 0.02);
 }
 
-.add-image-upload label {
-    cursor: pointer;
-    display: inline-block;
-}
-
-.add-product-name, 
-.add-product-description{
-    width: 100%;
-    max-width: 500px;
-}
-
-.add-product-name p,
-.add-product-description p {
+.image-placeholder p {
+    font-size: 16px;
     font-weight: 600;
-    margin-bottom: 10px;
+    color: #2c3e50;
+    margin: 0;
+}
+
+.image-placeholder span {
+    font-size: 13px;
+    color: #95a5a6;
+}
+
+.image-preview {
+    position: relative;
+    height: 100%;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.image-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.image-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.image-preview:hover .image-overlay {
+    opacity: 1;
+}
+
+.image-overlay span {
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.fields-section {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.field-label {
+    font-size: 14px;
+    font-weight: 600;
     color: #2c3e50;
 }
 
-.add-product-name input, 
-.add-product-description textarea{
+.form-group input,
+.form-group textarea,
+.form-group select {
     padding: 14px 16px;
     border: 2px solid #e0e0e0;
     border-radius: 12px;
     font-size: 15px;
     font-family: 'Outfit', sans-serif;
+    color: #2c3e50;
     transition: all 0.3s ease;
-    color: #2c3e50;
-    width: 100%;
 }
 
-.add-product-name input::placeholder,
-.add-product-description textarea::placeholder {
-    color: #7f8c8d;
-}
-
-.add-product-name input:focus, 
-.add-product-description textarea:focus{
-    border-color: #1f3d2b;
-    box-shadow: 0 0 0 3px rgba(31, 61, 43, 0.1);
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
     outline: none;
+    border-color: #ff6b6b;
+    box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.1);
 }
 
-.add-category-price{
-    display: flex;
-    gap: 40px;
-    align-items: flex-start;
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: #bdc3c7;
 }
 
-.add-category, 
-.add-price {
-    flex: 1;
-    max-width: 250px;
+.form-group textarea {
+    resize: vertical;
+    min-height: 100px;
 }
 
-.add-category p,
-.add-price p {
-    font-weight: 600;
-    margin-bottom: 10px;
-    color: #2c3e50;
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
 }
 
-.add-category select, 
-.add-price input{
+.add-submit-btn {
     width: 100%;
-    padding: 12px 14px;
-    border: 2px solid #e0e0e0;
-    border-radius: 10px;
-    font-size: 14px;
-    font-family: 'Outfit', sans-serif;
-    transition: all 0.3s ease;
-    color: #2c3e50;
-    background: white;
-}
-
-.add-category select:hover,
-.add-price input:hover {
-    border-color: #1f3d2b;
-}
-
-.add-category select:focus, 
-.add-price input:focus{
-    border-color: #1f3d2b;
-    box-shadow: 0 0 0 3px rgba(31, 61, 43, 0.1);
-    outline: none;
-}
-
-.add-btn{
-    width: 100%;
-    max-width: 180px;
-    border: none;
-    padding: 14px 28px;
-    background: linear-gradient(135deg, #1f3d2b, #2d5c42);
+    padding: 18px;
+    background: linear-gradient(135deg, #ff6b6b, #f59e0b);
     color: white;
-    cursor: pointer;
-    border-radius: 10px;
-    font-weight: 600;
+    border: none;
+    border-radius: 14px;
     font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
-    margin-top: 10px;
+    box-shadow: 0 8px 24px rgba(255, 107, 107, 0.3);
+    margin-top: 8px;
 }
 
-.add-btn:hover{
-    transform: translateY(-3px);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+.add-submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(255, 107, 107, 0.4);
 }
 
-.add-btn:active {
-    transform: translateY(-1px);
+.add-submit-btn:active {
+    transform: translateY(0);
+}
+
+@media (max-width: 1024px) {
+    .add-redesign {
+        margin-left: 0;
+        padding-top: 120px;
+    }
+    
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .image-upload-label {
+        min-height: 300px;
+    }
+}
+
+@media (max-width: 768px) {
+    .add-redesign {
+        padding: 100px 20px 40px;
+    }
+    
+    .add-form-redesign {
+        padding: 24px;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+    }
 }

@@ -11,5 +11,4 @@ orderRouter.get('/list', listOrders)
 orderRouter.post('/status', updateOrderStatus)
 orderRouter.post('/confirm', confirmPayment)
 
-
 export default orderRouter;

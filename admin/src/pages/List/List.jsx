@@ -104,7 +104,16 @@ const List = ({url}) => {
 
   return (
     <div className='list add flex-col'>
-        <p>All Foods List</p>
+        <div className="list-header">
+            <div className="list-header-content">
+                <p className="list-title">All Foods List</p>
+            </div>
+            <div className="list-count-badge">
+                <span className="count">{list.length}</span>
+                <span className="label">TOTAL ITEMS</span>
+            </div>
+        </div>
+        
         <div className="list-table">
             <div className="list-table-format title">
                 <b>Image</b>

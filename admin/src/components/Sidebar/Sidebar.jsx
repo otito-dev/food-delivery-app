@@ -5,21 +5,32 @@ import { NavLink } from 'react-router-dom'
 
 const Sidebar = () => {
   return (
-    <div className='sidebar'>
-        <div className="sidebar-options">
-            <NavLink to='/add' className="sidebar-option">
-                <img src={assets.add_icon} alt="" />
-                <p>Add Items</p>
-            </NavLink>
-            <NavLink to='/list' className="sidebar-option">
-                <img src={assets.order_icon} alt="" />
-                <p>List Items</p>
-            </NavLink>
-            <NavLink to='/orders' className="sidebar-option">
-                <img src={assets.order_icon} alt="" />
-                <p>Orders</p>
-            </NavLink>
-        </div>
+    <div className='sidebar-redesign'>
+      <div className='sidebar-content'>
+        <NavLink to='/add' className='sidebar-link'>
+          <div className='sidebar-icon-wrapper'>
+            <img src={assets.add_icon} alt="Add" />
+          </div>
+          <span className='sidebar-label'>Add Items</span>
+          <div className='sidebar-indicator'></div>
+        </NavLink>
+
+        <NavLink to='/list' className='sidebar-link'>
+          <div className='sidebar-icon-wrapper'>
+            <img src={assets.order_icon} alt="List" />
+          </div>
+          <span className='sidebar-label'>List Items</span>
+          <div className='sidebar-indicator'></div>
+        </NavLink>
+
+        <NavLink to='/orders' className='sidebar-link'>
+          <div className='sidebar-icon-wrapper'>
+            <img src={assets.order_icon} alt="Orders" />
+          </div>
+          <span className='sidebar-label'>Orders</span>
+          <div className='sidebar-indicator'></div>
+        </NavLink>
+      </div>
     </div>
   )
 }

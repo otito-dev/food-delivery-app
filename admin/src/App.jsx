@@ -14,6 +14,21 @@ const App = () => {
   const url = "http://localhost:4000"
   const [token, setToken] = useState("")
   const [loading, setLoading] = useState(true)
+  const [pendingOrders, setPendingOrders] = useState(0)
+
+  // Fetch pending orders count
+  const fetchPendingOrders = async () => {
+    try {
+      const response = await axios.get(`${url}/api/order/list`)
+      if (response.data.success && response.data.data) {
+        // Count unpaid orders
+        const pending = response.data.data.filter(order => !order.payment).length
+        setPendingOrders(pending)
+      }
+    } catch (error) {
+      console.error('Error fetching pending orders:', error)
+    }
+  }
 
   // Check if user is logged in on mount
   useEffect(() => {
@@ -44,6 +59,16 @@ const App = () => {
 
     checkAuth()
   }, [])
+
+  // Fetch pending orders when token is set
+  useEffect(() => {
+    if (token) {
+      fetchPendingOrders()
+      // Refresh every 30 seconds
+      const interval = setInterval(fetchPendingOrders, 30000)
+      return () => clearInterval(interval)
+    }
+  }, [token])
 
   // Show loading spinner while checking auth
   if (loading) {
@@ -82,14 +107,14 @@ const App = () => {
   return (
     <div>
       <ToastContainer/>
-      <Navbar token={token} setToken={setToken} />
+      <Navbar token={token} pendingOrders={pendingOrders} />
       <hr/>
       <div className="app-content">
         <Sidebar/>
         <Routes>
           <Route path="/add" element={<Add url={url} token={token} />}/>
           <Route path="/list" element={<List url={url} token={token} />}/>
-          <Route path="/orders" element={<Order url={url} token={token} />}/>
+          <Route path="/orders" element={<Order url={url} token={token} onOrderUpdate={fetchPendingOrders} />}/>
         </Routes>
       </div>
     </div>

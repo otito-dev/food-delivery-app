@@ -28,7 +28,7 @@ hr{
 }
 
 .app-content > div:not(.sidebar){
-    margin-left: 18%;
+    /* margin-left: 1%; */
     flex: 1;
     padding: 30px;
 }

@@ -1,72 +1,131 @@
-.sidebar{
-    width: 18%;
+.sidebar-redesign {
+    width: 280px;
     min-height: 100vh;
+    background: white;
+    border-right: 2px solid #f0f0f0;
     position: fixed;
     left: 0;
-    top: 70px;
-    bottom: 0;
-    background: linear-gradient(180deg, white 0%, #f8f1e5 100%);
-    border-right: 2px solid #e0e0e0;
-    font-size: max(1vw, 11px);
-    overflow-y: auto;
-    box-shadow: 2px 0 12px rgba(0, 0, 0, 0.05);
-    z-index: 100;
+    top: 80px;
+    padding: 40px 0;
 }
 
-.sidebar-options{
-    padding-top: 30px;
-    padding-left: 20%;
+.sidebar-content {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 8px;
+    padding: 0 20px;
 }
 
-.sidebar-option{
+.sidebar-link {
+    position: relative;
     display: flex;
     align-items: center;
-    gap: 12px;
-    border: none;
-    padding: 14px 12px;
-    border-radius: 0 12px 12px 0;
-    cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    margin-right: 12px;
-    font-weight: 500;
+    gap: 16px;
+    padding: 16px 20px;
+    border-radius: 14px;
+    text-decoration: none;
     color: #7f8c8d;
-}
-
-.sidebar-option:hover{
-    background-color: rgba(31, 61, 43, 0.08);
-    color: #2c3e50;
-    transform: translateX(6px);
-}
-
-.sidebar-option.active{
-    background: linear-gradient(90deg, #1f3d2b 0%, #2d5c42 100%);
-    color: white;
-    box-shadow: 0 4px 12px rgba(31, 61, 43, 0.3);
     font-weight: 600;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    overflow: hidden;
 }
 
-.sidebar-option.active:hover {
-    transform: translateX(8px);
+.sidebar-link:hover {
+    background: rgba(255, 107, 107, 0.05);
+    color: #ff6b6b;
+    transform: translateX(4px);
 }
 
-@media (max-width: 900px){
-    .sidebar{
-        width: 70px;
+.sidebar-link.active {
+    background: linear-gradient(135deg, rgba(255, 107, 107, 0.1), rgba(245, 158, 11, 0.1));
+    color: #ff6b6b;
+}
+
+.sidebar-icon-wrapper {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    background: #f8f9fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.sidebar-link.active .sidebar-icon-wrapper {
+    background: linear-gradient(135deg, #ff6b6b, #f59e0b);
+    box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+}
+
+.sidebar-icon-wrapper img {
+    width: 20px;
+    height: 20px;
+    filter: brightness(0) saturate(100%) invert(53%) sepia(8%) saturate(457%) hue-rotate(157deg) brightness(94%) contrast(89%);
+    transition: filter 0.3s ease;
+}
+
+.sidebar-link.active .sidebar-icon-wrapper img {
+    filter: brightness(0) invert(1);
+}
+
+.sidebar-link:hover .sidebar-icon-wrapper img {
+    filter: brightness(0) saturate(100%) invert(49%) sepia(89%) saturate(2770%) hue-rotate(334deg) brightness(103%) contrast(101%);
+}
+
+.sidebar-link.active:hover .sidebar-icon-wrapper img {
+    filter: brightness(0) invert(1);
+}
+
+.sidebar-label {
+    flex: 1;
+    font-size: 15px;
+}
+
+.sidebar-indicator {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 0;
+    background: linear-gradient(135deg, #ff6b6b, #f59e0b);
+    border-radius: 4px 0 0 4px;
+    transition: height 0.3s ease;
+}
+
+.sidebar-link.active .sidebar-indicator {
+    height: 60%;
+}
+
+@media (max-width: 768px) {
+    .sidebar-redesign {
+        width: 100%;
+        min-height: auto;
+        position: static;
+        border-right: none;
+        border-bottom: 2px solid #f0f0f0;
+        padding: 20px 0;
     }
-    .sidebar-option p{
-        display: none;
+    
+    .sidebar-content {
+        flex-direction: row;
+        overflow-x: auto;
+        padding: 0 20px;
     }
-    .sidebar-options{
-        padding-left: 0;
-        align-items: center;
-        gap: 8px;
-    }
-    .sidebar-option {
+    
+    .sidebar-link {
+        flex-direction: column;
+        min-width: 100px;
+        text-align: center;
         padding: 12px;
-        border-radius: 50%;
-        margin-right: 0;
+    }
+    
+    .sidebar-label {
+        font-size: 13px;
+    }
+    
+    .sidebar-indicator {
+        display: none;
     }
 }

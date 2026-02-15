@@ -3,7 +3,7 @@ import './Order.css'
 import axios from 'axios'
 import { assets } from '../../assets/assets'
 
-const Order = () => {
+const Order = ({onOrderUpdate}) => {
   const [orders, setOrders] = useState([])
   const [loading, setLoading] = useState(false)
   const url = "http://localhost:4000"
@@ -33,6 +33,7 @@ const Order = () => {
       })
       if (response.data.success) {
         fetchOrders()
+        if (onOrderUpdate) onOrderUpdate()
       }
     } catch (error) {
       console.error("Error updating status:", error)
@@ -46,6 +47,7 @@ const Order = () => {
       })
       if (response.data.success) {
         fetchOrders()
+        if (onOrderUpdate) onOrderUpdate()
       }
     } catch (error) {
       console.error("Error confirming payment:", error)

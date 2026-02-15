@@ -1,32 +1,25 @@
 import foodModel from '../models/foodModel.js'
 import fs from 'fs'
-import path from 'path'
 
-// ✅ FIXED: Add food item with proper validation
 const addFood = async (req, res) => {
     try {
-        // ✅ Validate file upload
         if (!req.file) {
             return res.json({success: false, message: "Image is required"})
         }
 
-        // ✅ Validate required fields
         const {name, description, price, category} = req.body;
         
         if (!name || !description || !price || !category) {
-            // Clean up uploaded file
             fs.unlink(`uploads/${req.file.filename}`, () => {})
             return res.json({success: false, message: "All fields are required"})
         }
 
-        // ✅ Validate price is positive number
         const priceNum = Number(price);
         if (isNaN(priceNum) || priceNum <= 0) {
             fs.unlink(`uploads/${req.file.filename}`, () => {})
             return res.json({success: false, message: "Price must be a positive number"})
         }
 
-        // ✅ Validate category
         const validCategories = ["Salad", "Rolls", "Deserts", "Sandwich", "Cake", "Pure Veg", "Pasta", "Noodles"];
         if (!validCategories.includes(category)) {
             fs.unlink(`uploads/${req.file.filename}`, () => {})
@@ -49,7 +42,6 @@ const addFood = async (req, res) => {
     } catch (error) {
         console.error("Error adding food:", error);
         
-        // ✅ Clean up uploaded file if save fails
         if (req.file) {
             fs.unlink(`uploads/${req.file.filename}`, () => {})
         }
@@ -58,10 +50,8 @@ const addFood = async (req, res) => {
     }
 }
 
-// ✅ Update food item with proper validation
 const updateFood = async (req, res) => {
     try {
-        // ✅ Validate ID
         if (!req.body.id) {
             return res.json({success: false, message: "Food ID is required"})
         }
@@ -72,28 +62,23 @@ const updateFood = async (req, res) => {
             return res.json({success: false, message: "Food item not found"})
         }
 
-        // ✅ Validate required fields
         const {name, description, price, category} = req.body;
         
         if (!name || !description || !price || !category) {
             return res.json({success: false, message: "All fields are required"})
         }
 
-        // ✅ Validate price is positive number
         const priceNum = Number(price);
         if (isNaN(priceNum) || priceNum <= 0) {
             return res.json({success: false, message: "Price must be a positive number"})
         }
 
-        // ✅ Validate category
         const validCategories = ["Salad", "Rolls", "Deserts", "Sandwich", "Cake", "Pure Veg", "Pasta", "Noodles"];
         if (!validCategories.includes(category)) {
             return res.json({success: false, message: "Invalid category"})
         }
 
-        // ✅ Update image if new one is provided
         if (req.file) {
-            // Delete old image
             const imagePath = `uploads/${food.image}`;
             if (fs.existsSync(imagePath)) {
                 fs.unlink(imagePath, (err) => {
@@ -103,7 +88,6 @@ const updateFood = async (req, res) => {
             food.image = req.file.filename;
         }
 
-        // ✅ Update fields
         food.name = name.trim();
         food.description = description.trim();
         food.price = priceNum;
@@ -115,7 +99,6 @@ const updateFood = async (req, res) => {
     } catch (error) {
         console.error("Error updating food:", error);
         
-        // ✅ Clean up uploaded file if save fails
         if (req.file) {
             fs.unlink(`uploads/${req.file.filename}`, () => {})
         }
@@ -124,10 +107,9 @@ const updateFood = async (req, res) => {
     }
 }
 
-// ✅ FIXED: All food list with error handling
 const listFood = async (req, res) => {
     try {
-        const foods = await foodModel.find({}).sort({createdAt: -1}); // ✅ Sort by newest
+        const foods = await foodModel.find({});
         res.json({success: true, data: foods})
     } catch (error) {
         console.error("Error listing food:", error);
@@ -135,10 +117,8 @@ const listFood = async (req, res) => {
     }
 }
 
-// ✅ FIXED: Remove food item with validation
 const removeFood = async (req, res) => {
     try {
-        // ✅ Validate ID
         if (!req.body.id) {
             return res.json({success: false, message: "Food ID is required"})
         }
@@ -149,7 +129,6 @@ const removeFood = async (req, res) => {
             return res.json({success: false, message: "Food item not found"})
         }
 
-        // ✅ Delete image file
         const imagePath = `uploads/${food.image}`;
         if (fs.existsSync(imagePath)) {
             fs.unlink(imagePath, (err) => {
@@ -166,4 +145,19 @@ const removeFood = async (req, res) => {
     }
 }
 
-export {addFood, listFood, removeFood, updateFood}
+const getFood = async (req, res) => {
+    try {
+        const food = await foodModel.findById(req.params.id);
+        
+        if (!food) {
+            return res.json({success: false, message: "Food item not found"})
+        }
+        
+        res.json({success: true, food: food})
+    } catch (error) {
+        console.error("Error getting food:", error);
+        res.json({success: false, message: "Error fetching food item"})
+    }
+}
+
+export {addFood, listFood, removeFood, updateFood, getFood}

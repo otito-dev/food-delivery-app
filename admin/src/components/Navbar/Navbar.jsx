@@ -1,88 +1,43 @@
-import React, { useState } from 'react'
+import React from 'react'
 import './Navbar.css'
-import { assets } from '../../assets/assets'
-import { toast } from 'react-toastify'
+import {assets} from '../../assets/assets'
+import { useNavigate } from 'react-router-dom'
 
-const Navbar = ({ token, setToken }) => {
-  const [showLogoutModal, setShowLogoutModal] = useState(false)
+const Navbar = ({token, pendingOrders = 0}) => {
+  const navigate = useNavigate();
 
   const handleLogout = () => {
-    setShowLogoutModal(true)
-    
-    setTimeout(() => {
-      // Remove token
-      localStorage.removeItem('adminToken')
-      setToken("")
-      toast.success('Logged out successfully')
-      setShowLogoutModal(false)
-    }, 800)
+    localStorage.removeItem('adminToken');
+    navigate('/admin-login');
+    window.location.reload();
   }
 
   return (
-    <>
-      {/* Logout Modal */}
-      {showLogoutModal && (
-        <div style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          background: 'rgba(0, 0, 0, 0.6)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          zIndex: 10000,
-          backdropFilter: 'blur(4px)'
-        }}>
-          <div style={{
-            background: 'white',
-            padding: '48px',
-            borderRadius: '20px',
-            boxShadow: '0 8px 24px rgba(0, 0, 0, 0.15)',
-            textAlign: 'center'
-          }}>
-            <div style={{
-              width: '56px',
-              height: '56px',
-              border: '5px solid #f8f9fa',
-              borderTop: '5px solid #667eea',
-              borderRadius: '50%',
-              margin: '0 auto 20px',
-              animation: 'spin 1.2s linear infinite'
-            }}></div>
-            <p style={{
-              color: '#2c3e50',
-              fontSize: '16px',
-              fontWeight: 500,
-              margin: 0
-            }}>
-              Logging out...
-            </p>
+    <div className='admin-navbar-redesign'>
+      <div className='admin-navbar-container'>
+        <div className='admin-navbar-left'>
+          <img className='admin-logo' src={assets.logo} alt="QuickBite Admin" />
+          <div className='admin-badge'>
+            <span className='badge-dot'></span>
+            <span>Admin Panel</span>
           </div>
         </div>
-      )}
+        
+        <div className='admin-navbar-right'>
+          <button className='admin-notification-btn'>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M15 6.66667C15 5.34058 14.4732 4.06881 13.5355 3.13113C12.5979 2.19345 11.3261 1.66667 10 1.66667C8.67392 1.66667 7.40215 2.19345 6.46447 3.13113C5.52678 4.06881 5 5.34058 5 6.66667C5 12.5 2.5 14.1667 2.5 14.1667H17.5C17.5 14.1667 15 12.5 15 6.66667Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M11.4417 17.5C11.2952 17.7526 11.0849 17.9622 10.8319 18.1079C10.5789 18.2537 10.292 18.3304 10 18.3304C9.70802 18.3304 9.42116 18.2537 9.16815 18.1079C8.91514 17.9622 8.70484 17.7526 8.55835 17.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+            {pendingOrders > 0 && <span className='notification-badge'>{pendingOrders}</span>}
+          </button>
 
-      <div className='navbar'>
-        <img className='logo' src={assets.logo} alt="" />
-        <div style={{ position: 'relative' }}>
-          <img 
-            className='profile' 
-            src={assets.profile_image} 
-            alt="" 
-            style={{ cursor: 'pointer' }}
-            title="Click to logout"
-          />
-          {/* Logout dropdown */}
-          <div className='admin-profile-dropdown'>
-            <div onClick={handleLogout} className='logout-option'>
-              <span>🚪</span>
-              <span>Logout</span>
-            </div>
-          </div>
+          <button className='admin-signout-btn' onClick={handleLogout} title="Sign Out">
+            Logout
+          </button>
         </div>
       </div>
-    </>
+    </div>
   )
 }
 

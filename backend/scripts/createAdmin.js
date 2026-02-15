@@ -16,10 +16,16 @@ const createAdmin = async () => {
         console.log("");
 
         const adminData = {
-            name: "Otito DEV Admin",
-            email: "otito@gmail.com",
-            password: "Otitoboss",
+            name: process.env.ADMIN_NAME || "Admin",
+            email: process.env.ADMIN_EMAIL || "admin@example.com",
+            password: process.env.ADMIN_PASSWORD || "Admin123",
         };
+
+        if (!process.env.ADMIN_EMAIL || !process.env.ADMIN_PASSWORD) {
+            console.log("⚠️  WARNING: Using default credentials!");
+            console.log("Set ADMIN_EMAIL and ADMIN_PASSWORD in .env file");
+            console.log("");
+        }
 
         console.log(`🔍 Checking if ${adminData.email} exists...`);
         const existingUser = await userModels.findOne({ email: adminData.email });
@@ -48,7 +54,6 @@ const createAdmin = async () => {
                 console.log("");
             }
         } else {
-            // Create new admin
             console.log("👤 Creating new admin user...");
             
             const hashedPassword = await bcrypt.hash(adminData.password, 10);
@@ -97,11 +102,11 @@ const createAdmin = async () => {
         console.error("1. Database connection failed - check MONGODB_URI");
         console.error("2. User model not found - check imports");
         console.error("3. Validation error - check user schema");
+        console.error("4. Missing environment variables - check .env file");
         console.error("");
         
         process.exit(1);
     }
 };
 
-// Run the script
 createAdmin();

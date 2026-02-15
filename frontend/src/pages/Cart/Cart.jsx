@@ -1,41 +1,46 @@
-import React, { useContext, useEffect } from 'react'
-import './Cart.css'
-import { StoreContext } from '../../context/StoreContext'
+import React, { useContext, useEffect } from 'react';
+import './Cart.css';
+import { StoreContext } from '../../context/StoreContext';
 import { useNavigate } from 'react-router-dom';
 
 const Cart = () => {
 
-  const {cartItems,food_list,removeFromCart,getTotalCartAmount,url,token} = useContext(StoreContext)
+  const {
+    cartItems,
+    food_list,
+    removeFromCart,
+    getTotalCartAmount,
+    url,
+    token,
+    loading
+  } = useContext(StoreContext);
+
   const navigate = useNavigate();
-  const deliveryFee = Math.round(getTotalCartAmount()*0.2);
 
-  // Redirect to home if not logged in and scroll to top
+  const deliveryFee = Math.round(getTotalCartAmount() * 0.2);
+
+  // ✅ Auto scroll to top when Cart mounts
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    if (!token) {
-      navigate('/');
-    }
-  }, [token, navigate]);
+    window.scrollTo(0, 0);
+  }, []);
 
-  // Don't render if not authenticated
+  // Show loading screen
+  if (loading) {
+    return <div className="cart"><h2>Loading...</h2></div>;
+  }
+
+  // Not authenticated
   if (!token) {
     return null;
   }
 
-  // Check if cart is empty
-  const isCartEmpty = getTotalCartAmount() === 0;
-
-  if (isCartEmpty) {
+  if (getTotalCartAmount() === 0) {
     return (
-      <div className='cart'>
-        <div className='empty-cart'>
-          <div className='empty-cart-icon'>🛒</div>
-          <h2>Your cart is empty</h2>
-          <p>Add some delicious food to your cart to get started!</p>
-          <button onClick={() => navigate('/')} className='continue-shopping-btn'>
-            Continue Shopping
-          </button>
-        </div>
+      <div className="cart empty-cart">
+        <div className="empty-cart-icon">🛒</div>
+        <h2>Your Cart is Empty</h2>
+        <p>Looks like you haven't added anything to your cart yet.</p>
+        <button onClick={() => navigate('/')} className="continue-shopping-btn">Return to Menu</button>
       </div>
     )
   }
@@ -53,31 +58,38 @@ const Cart = () => {
         </div>
         <br />
         <hr />
-        {food_list.map((item,index)=>{
-          if(cartItems[item._id]>0)
-          {
-            return(
-              <div>
+
+        {food_list.map((item, index) => {
+          if (cartItems[item._id] > 0) {
+            return (
+              <div key={index}>
                 <div className="cart-items-title cart-items-item">
-                  <img src={url+"/images/"+item.image} alt="" />
+                  <img src={url + "/images/" + item.image} alt="" />
                   <p>{item.name}</p>
                   <p>₦{item.price}</p>
                   <p>{cartItems[item._id]}</p>
-                  <p>₦{item.price*cartItems[item._id]}</p>
-                  <p onClick={()=>removeFromCart(item._id)} className='cross'>x</p>
+                  <p>₦{item.price * cartItems[item._id]}</p>
+                  <p
+                    onClick={() => removeFromCart(item._id)}
+                    className='cross'
+                  >
+                    x
+                  </p>
                 </div>
-               <hr />
+                <hr />
               </div>
-            )
+            );
           }
+          return null;
         })}
       </div>
+
       <div className="cart-buttom">
         <div className="cart-total">
           <h2>Cart Total</h2>
           <div>
             <div className="card-total-details">
-              <p>subtotal</p>
+              <p>Subtotal</p>
               <p>₦{getTotalCartAmount()}</p>
             </div>
             <hr />
@@ -91,8 +103,11 @@ const Cart = () => {
               <b>₦{getTotalCartAmount() + deliveryFee}</b>
             </div>            
           </div>
-          <button onClick={()=>navigate('/order')}>PROCEED TO CHECKOUT</button>
+          <button onClick={() => navigate('/order')}>
+            PROCEED TO CHECKOUT
+          </button>
         </div>
+
         <div className="cart-promocode">
           <div>
             <p>If you have a promo code, Enter it here</p>
@@ -104,7 +119,7 @@ const Cart = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Cart
+export default Cart;

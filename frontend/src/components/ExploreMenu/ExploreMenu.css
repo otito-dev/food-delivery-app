@@ -1,120 +1,217 @@
-.expolore-menu{
+.explore-menu-redesign {
+    max-width: 1400px;
+    margin: 80px auto 60px;
+    padding: 0 40px;
+}
+
+.explore-menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 40px;
+    margin-bottom: 50px;
+}
+
+.explore-menu-title-section {
+    flex: 1;
+}
+
+.explore-menu-title {
+    font-size: 42px;
+    font-weight: 800;
+    margin: 0 0 12px 0;
+    color: #2c3e50;
+}
+
+.explore-menu-subtitle {
+    font-size: 17px;
+    line-height: 1.7;
+    color: #7f8c8d;
+    margin: 0;
+    max-width: 600px;
+}
+
+.category-count-badge {
     display: flex;
     flex-direction: column;
-    gap: 24px;
-    animation: slideInUp 0.6s ease;
-    margin: 60px auto;
-    padding: 0 150px;
-}
-
-.expolore-menu h1{
-    color: #2c3e50;
-    font-weight: 700;
-    font-size: 32px;
-    margin: 0;
-    text-align: center;
-}
-
-.explore-menu-text{
-    max-width: 70%;
-    color: #7f8c8d;
-    font-size: 16px;
-    line-height: 1.6;
-    text-align: center;
-    margin: 20px auto;
-}
-
-.explore-menu-list{
-    display: flex;
-    justify-content: flex-start;
     align-items: center;
-    gap: 50px;
-    text-align: center;
-    margin: 20px 0;
-    overflow-x: auto;
-    padding-bottom: 10px;
+    padding: 20px 30px;
+    background-color: #39854b60;
+    border: 2px solid rgba(11, 51, 11, 0.2);
+    border-radius: 20px;
+    min-width: 120px;
 }
 
-.explore-menu-list::-webkit-scrollbar{
-    height: 6px;
+.count-number {
+    font-size: 36px;
+    font-weight: 800;
+    background: linear-gradient(135deg, #1f3d26, #4f965f);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
 }
 
-.explore-menu-list::-webkit-scrollbar-track {
-    background: #f8f1e5;
-    border-radius: 10px;
-}
-
-.explore-menu-list::-webkit-scrollbar-thumb {
-    background: #1f3d2b;
-    border-radius: 10px;
-}
-
-.explore-menu-list-item img{
-    width: 7.5vw;
-    min-width: 85px;
-    max-width: 105px;
-    height: 7.5vw;
-    min-height: 95px;
-    max-height: 115px;
-    cursor: pointer;
-    border-radius: 50%;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    object-fit: cover;
-    border: 3px solid transparent;
-}
-
-.explore-menu-list-item:hover img{
-    transform: scale(1.1);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-}
-
-.explore-menu-list-item p{
-    margin-top: 12px;
-    color: #7f8c8d;
-    font-size: max(1.2vw, 15px);
-    cursor: pointer;
-    font-weight: 500;
-    transition: all 0.3s ease;
-}
-
-.explore-menu-list-item:hover p {
-    color: #1f3d2b;
+.count-label {
+    font-size: 15px;
+    color: #1b7931;
     font-weight: 600;
+    margin-top: 8px;
 }
 
-.expolore-menu hr{
-    margin: 20px 0;
+.explore-menu-list-wrapper {
+    position: relative;
+    margin-bottom: 50px;
+}
+
+.explore-menu-list-redesign {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 20px;
+}
+
+.menu-category-card {
+    cursor: pointer;
+}
+
+.menu-category-card:hover {
+    transform: translateY(-8px);
+}
+
+.category-image-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 20px;
+    overflow: hidden;
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    border: 3px solid transparent;
+    transition: all 0.3s ease;
+    margin-bottom: 12px;
+}
+
+.menu-category-card:hover .category-image-wrapper {
+    border-color: #8cf0a348;
+    box-shadow: 0 8px 24px rgba(128, 238, 154, 0.3);
+}
+
+.menu-category-card.active .category-image-wrapper {
+    border-color: #1f3d26;
+    box-shadow: 0 8px 30px rgba(31, 61, 38, 0.3);
+}
+
+.category-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.menu-category-card:hover .category-image {
+    transform: scale(1.1);
+}
+
+.category-check-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 32px;
+    height: 32px;
+    background: linear-gradient(135deg, #bee0c6, #4f965f);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(31, 61, 38, 0.4);
+    color: white;
+    font-size: 18px;
+    font-weight: 700;
+
+}
+
+.category-info {
+    text-align: center;
+}
+
+.category-name {
+    font-size: 16px;
+    font-weight: 700;
+    color: #2c3e50;
+    margin: 0 0 6px 0;
+    transition: color 0.3s ease;
+}
+
+.menu-category-card.active .category-name {
+    color: #1b7931;
+}
+
+.menu-category-card:hover .category-name {
+    color: #1b7931;
+}
+
+.category-selected-tag {
+    display: inline-block;
+    padding: 4px 12px;
+    background: linear-gradient(135deg, rgba(255, 107, 107, 0.1), rgba(245, 158, 11, 0.1));
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    color: #1b7931;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.explore-menu-divider {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.divider-line {
+    flex: 1;
     height: 2px;
-    background: linear-gradient(90deg, transparent, #e0e0e0, transparent);
-    border: none;
+    background: linear-gradient(to right, transparent, #e0e0e0, transparent);
 }
 
-.explore-menu-list-item .active{
-    border: 4px solid #1f3d2b;
-    padding: 2px;
-    box-shadow: 0 0 20px rgba(31, 61, 43, 0.4);
+.divider-text {
+    font-size: 13px;
+    color: #95a5a6;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
-@media (max-width: 1050px) {
-    .explore-menu-text{
-        max-width: 100%;
-        font-size: 15px;
+@media (max-width: 1024px) {
+    .explore-menu-list-redesign {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .explore-menu-redesign {
+        margin: 60px auto 40px;
+        padding: 0 20px;
     }
     
-    .expolore-menu h1 {
-        font-size: 28px;
-    }
-}
-
-@media (max-width: 750px) {
-    .explore-menu-list {
-        gap: 20px;
+    .explore-menu-header {
+        flex-direction: column;
+        gap: 30px;
     }
     
-    .explore-menu-list-item img {
-        width: 60px;
-        height: 60px;
-        min-width: 60px;
-        min-height: 60px;
+    .explore-menu-title {
+        font-size: 32px;
+    }
+    
+    .category-count-badge {
+        align-self: flex-start;
+    }
+    
+    .explore-menu-list-redesign {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+        gap: 16px;
+    }
+    
+    .category-name {
+        font-size: 14px;
     }
 }
