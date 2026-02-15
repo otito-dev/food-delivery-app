@@ -23,13 +23,11 @@ const AdminLogin = ({ setToken }) => {
       if (response.data.success) {
         const token = response.data.token
         
-        // Verify this is an admin account
         const verifyResponse = await axios.post(`${url}/api/user/verify-admin`, {}, {
           headers: { token }
         })
 
         if (verifyResponse.data.success && verifyResponse.data.isAdmin) {
-          // Store token
           localStorage.setItem('adminToken', token)
           setToken(token)
           toast.success('Welcome Admin!')

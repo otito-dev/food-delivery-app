@@ -3,7 +3,6 @@ import jwt from 'jsonwebtoken'
 import bcrypt from 'bcrypt'
 import validator from 'validator'
 
-// Login user
 const loginUser = async (req,res) => {
     const {email,password} = req.body;
     try {
@@ -20,7 +19,6 @@ const loginUser = async (req,res) => {
 
         const token = createToken(user._id)
         
-        // ✅ Update last login
         user.lastLogin = new Date();
         await user.save();
         
@@ -36,27 +34,22 @@ const createToken = (id) => {
     return jwt.sign({id},process.env.JWT_SECRET)
 }
 
-// Register user
 const registerUser = async (req,res) => {
     const {name,password,email} = req.body;
     try {
-        // checking is user exist already
         const exists = await userModels.findOne({email});
         if(exists){
             return res.json({success:false,message:"User already exists"})  
         }
 
-        // validating email format & strong password
         if(!validator.isEmail(email)){
             return res.json({success:false,message:"Invalid Email"})
         }
 
-        // ✅ IMPROVED: Better password validation
         if (password.length < 8) {
             return res.json({success:false,message:"Password must be at least 8 characters long"})
         }
 
-        // Optional: Add stronger password requirements
         const hasUpperCase = /[A-Z]/.test(password);
         const hasLowerCase = /[a-z]/.test(password);
         const hasNumber = /\d/.test(password);
@@ -68,7 +61,6 @@ const registerUser = async (req,res) => {
             })
         }
 
-        // hashing user password
         const salt = await bcrypt.genSalt(10)
         const hashedPassword = await bcrypt.hash(password,salt);
 
@@ -88,7 +80,6 @@ const registerUser = async (req,res) => {
     }
 }
 
-// ✅ NEW: Verify if user is admin
 const verifyAdmin = async (req, res) => {
     try {
         const {token} = req.headers;

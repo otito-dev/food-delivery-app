@@ -7,7 +7,7 @@ const FoodDisplay = ({category}) => {
     const {food_list, searchQuery} = useContext(StoreContext)
 
     return (
-        <div className='food-display-redesign' id='food-display'>
+        <div className='food-display' id='food-display'>
             <div className='food-display-header'>
                 <h2 className='food-display-title'>
                     {category === "All" ? "Top Dishes Near You" : `Best ${category} Dishes`}

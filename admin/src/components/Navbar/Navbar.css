@@ -1,6 +1,4 @@
-/* Redesigned Admin Navbar */
-
-.admin-navbar-redesign {
+.admin-navbar {
     position: fixed;
     top: 0;
     left: 0;
@@ -19,7 +17,6 @@
     align-items: center;
 }
 
-/* Left Side */
 .admin-navbar-left {
     display: flex;
     align-items: center;
@@ -51,14 +48,12 @@
     border-radius: 50%;
 }
 
-/* Right Side */
 .admin-navbar-right {
     display: flex;
     align-items: center;
     gap: 16px;
 }
 
-/* Notification Button */
 .admin-notification-btn {
     position: relative;
     width: 44px;
@@ -118,7 +113,6 @@
     box-shadow: 0 4px 12px rgba(255, 107, 107, 0.2);
 }
 
-/* Responsive */
 @media (max-width: 768px) {
     .admin-navbar-container {
         padding: 0 20px;

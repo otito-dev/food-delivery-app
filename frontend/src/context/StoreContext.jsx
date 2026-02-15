@@ -9,7 +9,7 @@ const StoreContextProvider = (props) => {
     const [token, setToken] = useState("");
     const [food_list, setFoodList] = useState([]);
     const [searchQuery, setSearchQuery] = useState("");
-    const [loading, setLoading] = useState(true); // ✅ NEW
+    const [loading, setLoading] = useState(true); 
 
     const url = "http://localhost:4000";
 
@@ -94,7 +94,7 @@ const StoreContextProvider = (props) => {
             } catch (error) {
                 console.error("Error loading data:", error);
             } finally {
-                setLoading(false); // ✅ IMPORTANT
+                setLoading(false);
             }
         }
 
@@ -117,7 +117,7 @@ const StoreContextProvider = (props) => {
         searchQuery,
         setSearchQuery,
         foodMap,
-        loading // ✅ EXPORT LOADING
+        loading
     };
 
     return (

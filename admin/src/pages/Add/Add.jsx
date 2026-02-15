@@ -44,7 +44,7 @@ const Add = ({url}) => {
     }
 
     return (
-        <div className='add-redesign'>
+        <div className='add'>
             <div className='add-container'>
                 <div className='add-header'>
                     <h1 className='add-title'>Add New Item</h1>
@@ -53,7 +53,6 @@ const Add = ({url}) => {
 
                 <form className='add-form-redesign' onSubmit={onSubmitHandler}>
                     <div className='form-grid'>
-                        {/* Image Upload */}
                         <div className='form-section image-upload-section'>
                             <label className='section-label'>Product Image</label>
                             <div className='image-upload-area'>
@@ -84,7 +83,6 @@ const Add = ({url}) => {
                             </div>
                         </div>
 
-                        {/* Form Fields */}
                         <div className='form-section fields-section'>
                             <div className='form-group'>
                                 <label className='field-label'>Product Name</label>

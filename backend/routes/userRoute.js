@@ -5,6 +5,6 @@ const userRouter = express.Router()
 
 userRouter.post("/register", registerUser)
 userRouter.post("/login", loginUser)
-userRouter.post("/verify-admin", verifyAdmin) // ✅ NEW: Verify admin endpoint
+userRouter.post("/verify-admin", verifyAdmin)
 
 export default userRouter;

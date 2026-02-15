@@ -5,17 +5,15 @@ const userSchema = new mongoose.Schema({
     email: {type: String, required: true, unique: true},
     password: {type: String, required: true},
     cartData: {type: Object, default: {}},
-    isAdmin: {type: Boolean, default: false}, // ✅ NEW: Admin flag
-    emailVerified: {type: Boolean, default: false}, // ✅ NEW: Email verification
+    isAdmin: {type: Boolean, default: false}, 
+    emailVerified: {type: Boolean, default: false}, 
     createdAt: {type: Date, default: Date.now},
     lastLogin: {type: Date}
 }, {minimize: false})
 
-// ✅ NEW: Add indexes for performance
 userSchema.index({ email: 1 });
 userSchema.index({ isAdmin: 1 });
 
-// ✅ NEW: Add method to safely return user data (without password)
 userSchema.methods.toJSON = function() {
     const user = this.toObject();
     delete user.password;

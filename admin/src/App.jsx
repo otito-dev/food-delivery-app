@@ -16,12 +16,10 @@ const App = () => {
   const [loading, setLoading] = useState(true)
   const [pendingOrders, setPendingOrders] = useState(0)
 
-  // Fetch pending orders count
   const fetchPendingOrders = async () => {
     try {
       const response = await axios.get(`${url}/api/order/list`)
       if (response.data.success && response.data.data) {
-        // Count unpaid orders
         const pending = response.data.data.filter(order => !order.payment).length
         setPendingOrders(pending)
       }
@@ -30,14 +28,12 @@ const App = () => {
     }
   }
 
-  // Check if user is logged in on mount
   useEffect(() => {
     const checkAuth = async () => {
       const savedToken = localStorage.getItem('adminToken')
       
       if (savedToken) {
         try {
-          // Verify token is still valid and user is admin
           const response = await axios.post(`${url}/api/user/verify-admin`, {}, {
             headers: { token: savedToken }
           })
@@ -45,7 +41,6 @@ const App = () => {
           if (response.data.success && response.data.isAdmin) {
             setToken(savedToken)
           } else {
-            // Invalid token or not admin
             localStorage.removeItem('adminToken')
           }
         } catch (error) {
@@ -59,18 +54,14 @@ const App = () => {
 
     checkAuth()
   }, [])
-
-  // Fetch pending orders when token is set
   useEffect(() => {
     if (token) {
       fetchPendingOrders()
-      // Refresh every 30 seconds
       const interval = setInterval(fetchPendingOrders, 30000)
       return () => clearInterval(interval)
     }
   }, [token])
 
-  // Show loading spinner while checking auth
   if (loading) {
     return (
       <div style={{
@@ -98,12 +89,10 @@ const App = () => {
     )
   }
 
-  // If not logged in, show login page
   if (!token) {
     return <AdminLogin setToken={setToken} />
   }
 
-  // If logged in, show admin panel
   return (
     <div>
       <ToastContainer/>

@@ -13,7 +13,7 @@ const Navbar = ({token, pendingOrders = 0}) => {
   }
 
   return (
-    <div className='admin-navbar-redesign'>
+    <div className='admin-navbar'>
       <div className='admin-navbar-container'>
         <div className='admin-navbar-left'>
           <img className='admin-logo' src={assets.logo} alt="QuickBite Admin" />

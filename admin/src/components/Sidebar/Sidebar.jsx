@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom'
 
 const Sidebar = () => {
   return (
-    <div className='sidebar-redesign'>
+    <div className='sidebar'>
       <div className='sidebar-content'>
         <NavLink to='/add' className='sidebar-link'>
           <div className='sidebar-icon-wrapper'>

@@ -13,10 +13,8 @@ const Verify = () => {
     const navigate = useNavigate();
 
     const verifyPayment = async() => {
-            const response = await axios.post(url+"/api/order/verify",{success,orderId});
-            // For WhatsApp payments, always navigate to myorders
-            // Payment status will be manually confirmed later
-            navigate("/myorders");
+        const response = await axios.post(url+"/api/order/verify",{success,orderId});
+        navigate("/myorders");
     }
 
     useEffect(()=>{

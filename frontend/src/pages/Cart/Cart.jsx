@@ -19,17 +19,14 @@ const Cart = () => {
 
   const deliveryFee = Math.round(getTotalCartAmount() * 0.2);
 
-  // ✅ Auto scroll to top when Cart mounts
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  // Show loading screen
   if (loading) {
     return <div className="cart"><h2>Loading...</h2></div>;
   }
 
-  // Not authenticated
   if (!token) {
     return null;
   }

@@ -3,7 +3,6 @@ import './LoginPopup.css'
 import { assets } from '../../assets/assets'
 import { StoreContext } from '../../context/StoreContext'
 import axios from "axios"
-// import { set } from 'mongoose'
 
 const LoginPopup = ({setShowLogin}) => {
 

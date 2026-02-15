@@ -1,7 +1,6 @@
 import orderModel from "../models/orderModel.js";
 import userModels from "../models/userModels.js";
 
-// place user order
 const placeOrder = async (req,res) => {
 
     const frontend_url = "https://localhost:5174";
@@ -9,22 +8,19 @@ const placeOrder = async (req,res) => {
     try {
         const { userId, items, address } = req.body
 
-        // compute subtotal and delivery fee (20%)
         const subtotal = items.reduce((s, it) => s + (it.price * it.quantity), 0)
         const deliveryFee = Math.round(subtotal * 0.2)
         const totalAmount = subtotal + deliveryFee
 
-        // create order in DB
         const newOrder = new orderModel({
             userId:req.body.userId,
             items:req.body.items,
-            amount:req.body.amount, //totalAmount//,
+            amount:req.body.amount,
             address:req.body.address,
             status: 'Order Received'
         })
         await newOrder.save();
 
-        // clear user's cart
         await userModels.findByIdAndUpdate(req.body.userId,{cartData: {} });
 
         return res.json({ success: true, message: 'Order placed successfully', orderId: newOrder._id, total: totalAmount })
@@ -38,8 +34,6 @@ const placeOrder = async (req,res) => {
 const verifyOrder = async (req, res) => {
     const {orderId,success}= req.body;
     try {
-        // For WhatsApp payments, keep status as "Order Received"
-        // Status will be updated to "Confirmed" only after admin confirms payment
         await orderModel.findByIdAndUpdate(orderId,{payment:false});
         res.json({success:true,message:"Order placed. Awaiting payment verification."})
     } catch (error) {
@@ -68,7 +62,6 @@ const listOrders = async (req, res) => {
     }
 }
 
-// Update order status
 const updateOrderStatus = async (req, res) => {
     const {orderId, status} = req.body;
     try {
@@ -80,7 +73,6 @@ const updateOrderStatus = async (req, res) => {
     }
 }
 
-// Admin: Confirm payment for WhatsApp orders
 const confirmPayment = async (req, res) => {
     const {orderId} = req.body;
     try {

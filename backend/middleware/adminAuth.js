@@ -1,7 +1,6 @@
 import jwt from "jsonwebtoken"
 import userModels from "../models/userModels.js";
 
-// ✅ NEW: Admin authentication middleware
 const adminAuth = async (req, res, next) => {
     const {token} = req.headers;
     
@@ -12,14 +11,12 @@ const adminAuth = async (req, res, next) => {
     try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
         
-        // Get user from database
         const user = await userModels.findById(decoded.id);
         
         if (!user) {
             return res.json({success: false, message: "User not found"})
         }
         
-        // Check if user is admin
         if (!user.isAdmin) {
             return res.json({success: false, message: "Admin privileges required"})
         }

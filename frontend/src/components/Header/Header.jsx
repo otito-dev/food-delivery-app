@@ -15,7 +15,7 @@ const Header = () => {
     window.open('https://www.youtube.com/', '_blank');
   }
   return (
-    <div className='header-redesign'>
+    <div className='header'>
       <div className='header-content-wrapper'>
         <div className='header-text-section'>
           <div className='header-badge'>

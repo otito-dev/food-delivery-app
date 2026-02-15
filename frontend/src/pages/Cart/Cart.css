@@ -172,7 +172,6 @@
     }
 }
 
-/* Empty Cart State */
 .empty-cart {
     display: flex;
     flex-direction: column;

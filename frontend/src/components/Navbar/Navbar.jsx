@@ -11,8 +11,6 @@ const Navbar = ({setShowLogin}) => {
     const navigate = useNavigate();
     const [isScrolled, setIsScrolled] = useState(false);
 
-
-    // Track scroll for navbar effect
     React.useEffect(() => {
         const handleScroll = () => {
             setIsScrolled(window.scrollY > 50);
@@ -30,9 +28,8 @@ const Navbar = ({setShowLogin}) => {
         return <div className="navbar-redesign"></div>;
     }
     return (
-        <nav className={`navbar-redesign ${isScrolled ? 'navbar-scrolled' : ''}`}>
+        <nav className={`navbar ${isScrolled ? 'navbar-scrolled' : ''}`}>
             <div className='navbar-container'>
-                {/* Left side - Logo and Menu */}
                 <div className='navbar-left'>
                     <Link to='/' className='navbar-logo-link' onClick={handleHomeClick}>
                         <img src={assets.logo} alt="QuickBite" className='navbar-logo' />
@@ -78,7 +75,6 @@ const Navbar = ({setShowLogin}) => {
                     </ul>
                 </div>
 
-                {/* Right side - Actions */}
                 <div className="navbar-actions">
                     <div className={`navbar-search-container ${searchActive ? 'active' : ''}`}>
                         <input
