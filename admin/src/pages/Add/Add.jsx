@@ -61,19 +61,13 @@ const Add = ({url}) => {
                                         <div className='image-preview'>
                                             <img src={URL.createObjectURL(image)} alt="Preview" />
                                             <div className='image-overlay'>
-                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                                    <path d="M21 15V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V15M17 8L12 3M12 3L7 8M12 3V15" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                                                </svg>
+                                                <span style={{fontSize: '24px'}}>📤</span>
                                                 <span>Change Image</span>
                                             </div>
                                         </div>
                                     ) : (
                                         <div className='image-placeholder'>
-                                            <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-                                                <path d="M40 38V10C40 8.89543 39.1046 8 38 8H10C8.89543 8 8 8.89543 8 10V38C8 39.1046 8.89543 40 10 40H38C39.1046 40 40 39.1046 40 38Z" stroke="#bdc3c7" strokeWidth="2"/>
-                                                <path d="M8 32L16 24L24 32M24 32L28 28L40 40" stroke="#bdc3c7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                                                <circle cx="18" cy="18" r="3" fill="#bdc3c7"/>
-                                            </svg>
+                                            <span style={{fontSize: '48px'}}>🖼️</span>
                                             <p>Click to upload image</p>
                                             <span>PNG, JPG up to 5MB</span>
                                         </div>
@@ -137,7 +131,7 @@ const Add = ({url}) => {
                             </div>
 
                             <button type='submit' className='add-submit-btn'>
-                                +
+                                ➕
                                 <span>Add Food Item</span>
                             </button>
                         </div>
